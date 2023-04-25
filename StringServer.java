@@ -8,15 +8,21 @@ class Handler implements URLHandler {
     String completeText = "";
 
     public String handleRequest(URI url) {
-        if (url.getPath().equals("/add-message")) {
+        if(url.getPath().equals("/")) {
+            return completeText;
+        }
+        else if (url.getPath().equals("/add-message")) {
             String[] parameters = url.getQuery().split("=");
             if (parameters[0].equals("s")) {
                 completeText += parameters[1] + "\n";
-                return completeText; 
             }
+            return completeText;
+        }
+
+        else {
+            return "404 Page Not Found.";
         }
     
-        return completeText;
     }
 }
 class StringServer {
